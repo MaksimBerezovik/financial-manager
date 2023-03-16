@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "finance-manager"
+version = "0.1.0"
+description = ""
+authors = ["Maksim Berezovik <9641650@gmail.com>"]
+readme = "README.md"
+packages = [{include = "finance_manager"}]
+
+[tool.poetry.dependencies]
+python = "^3.10.8"
+aiogram = "^2.25.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
