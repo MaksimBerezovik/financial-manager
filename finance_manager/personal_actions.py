@@ -2,6 +2,13 @@ from aiogram import types
 from dispatcher import dp
 import re
 from bot import BotDB
+import datetime
+
+
+def data_format(data):
+    data_time = datetime.datetime.strptime(data,"%Y-%m-%d %H:%M:%S" ) #transform into class datatime
+    data_formated = datetime.datetime.strftime(data_time, "%Y-%B-%A %H:%M")#transform into formated data <str>
+    return data_formated
 
 @dp.message_handler(commands = "start")   #Приветственное сообщение
 async def start(message: types.Message):
@@ -82,9 +89,8 @@ async def start(message: types.Message):
         for r in records:
             answer += "<b>" + ("➖ Расход" if not r[2] else "➕ Доход") + "</b>" #расход или доход
             answer += f" - {r[3]}" #Cумма
-            answer += f" <i>({r[4]})</i>" #Дата
+            answer += f" <i>({data_format(r[4])})</i>" #Дата
             answer += f" {r[5]}\n" #Инфо
-
         await message.reply(answer, reply=False)
     else:
         await message.reply("Записей не обнаружено!", reply=False)
