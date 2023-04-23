@@ -9,6 +9,7 @@ packages = [{include = "finance_manager"}]
 [tool.poetry.dependencies]
 python = "^3.10.8"
 aiogram = "^2.25.1"
+black = "^23.3.0"
 
 
 [tool.poetry.group.dev.dependencies]
