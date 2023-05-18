@@ -4,6 +4,7 @@ from dispatcher import dp
 import re
 from bot import BotDB
 import datetime
+from handlers.courses import *
 
 
 def data_format(data):
@@ -45,7 +46,7 @@ async def start(message: types.Message):
 
 @dp.message_handler(
     commands=("spent", "earned", "s", "e"), commands_prefix="/!"
-)  # Ловим сообщение с префиксом "/!" и опреацией доход/расход
+)  # Ловим сообщение с префиксом "/!" и операцией доход/расход
 async def start(message: types.Message):
     cmd_variants = (
         ("/spent", "/s", "!spent", "!s"),
@@ -55,7 +56,7 @@ async def start(message: types.Message):
         "-" if message.text.startswith(cmd_variants[0]) else "+"
     )  # записываем в переменную доход или расход
     value = message.text
-    info = ""
+    info, group = "", ""
     for i in cmd_variants:  # Узнаем тип операции
         for j in i:
             value = value.replace(j, "").strip()
@@ -73,7 +74,9 @@ async def start(message: types.Message):
         )  # выделяем числовое значение из всего текста
         if len(x):
             value = float(x[0].replace(",", "."))
-            BotDB.add_record_1(message.from_user.id, operation, value, info)
+            BotDB.add_record_1(
+                message.from_user.id, operation, value, info, group
+            )
 
             if operation == "-":
                 await message.reply(
@@ -130,16 +133,36 @@ async def start(message: types.Message):
         await message.reply("Записей не обнаружено!", reply=False)
 
 
-@dp.message_handler(commands=("statistic", "статистика"),
-                    commands_prefix="/!"
-                    )
-async def handler_statistic(message: types.Message):
-    answer = statistic.get_statistic(message.text, message.from_user.id)
-    await message.reply(answer, reply=False)
+# @dp.message_handler(commands=("statistic", "статистика"),
+#                     commands_prefix="/!"
+#                     )
+# async def handler_statistic(message: types.Message):
+#     answer = statistic.get_statistic(message.text, message.from_user.id)
+#     await message.reply(answer, reply=False)
 
-# @dp.message_handler(commands = ("n"), commands_prefix = "/!")  #Ловим команда для выдачи отчета о расходах за день/месяц/год
-# async def start(message: types.Message):
-#     cmd_variants = ("/n", "!n")
+
+@dp.message_handler(commands=("courses", "курсы", "c"), commands_prefix="/!")
+async def start(message: types.Message):
+    cmd_variants = ("/n", "!n")
+    within_als = {
+        "parse_bsb": ("bsb", "бсб"),
+        "parse_alfa": ("alfa", "альфа"),
+        "parse_belweb": ("belweb", "белвэб"),
+        "parse_prior": ("prior", "приор"),
+    }
+    cmd = message.text
+    for r in cmd_variants:
+        cmd = cmd.replace(r, "").strip()  # удаляем команду из текста
+    within = "parse_all"
+    if len(cmd):
+        for k in within_als:
+            for als in within_als[k]:
+                if als == cmd:
+                    within = k
+    result = eval(within)()
+    await message.reply(result, reply=False)
+
+
 #     operation = '-' if message.text.startswith(cmd_variants[0]) else '+' #записываем в переменную доход или расход
 #     value = message.text
 #     info = ''

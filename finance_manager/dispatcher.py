@@ -15,6 +15,6 @@ bot = Bot(token=config.BOT_TOKEN, parse_mode="HTML")
 dp = Dispatcher(bot)
 
 # activate filters
-dp.filters_factory.bind(IsOwnerFilter)
-dp.filters_factory.bind(IsAdminFilter)
-dp.filters_factory.bind(MemberCanRestrictFilter)
+# dp.filters_factory.bind(IsOwnerFilter)
+# dp.filters_factory.bind(IsAdminFilter)
+# dp.filters_factory.bind(MemberCanRestrictFilter)
