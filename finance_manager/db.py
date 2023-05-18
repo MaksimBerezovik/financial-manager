@@ -40,11 +40,11 @@ class BotDB:
         )
         return self.conn.commit()
 
-    def add_record_1(self, user_id, operation, value, info):
+    def add_record_1(self, user_id, operation, value, info, group):
         """Создаем запись о доходах/расходах"""
         self.cursor.execute(
-            "INSERT INTO `records` (`user_id`, `operation`, `value`, `info`) VALUES (?, ?, ?, ?)",
-            (self.get_user_id(user_id), operation == "+", value, info),
+            "INSERT INTO `records` (`user_id`, `operation`, `value`, `info`, `group`) VALUES (?, ?, ?, ?, ?)",
+            (self.get_user_id(user_id), operation == "+", value, info, group),
         )
         return self.conn.commit()
 

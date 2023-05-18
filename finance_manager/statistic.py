@@ -19,7 +19,6 @@ def command_processing(message: str, user_id):
             for j in within_als[i]:
                 if j == cmd:
                     within = cmd
-
     records = BotDB.get_records(user_id, within)  # get records
     # считаем сумму расходов и доходов
     for rec in records:
@@ -27,13 +26,14 @@ def command_processing(message: str, user_id):
             expenses += rec[3]  # расходы
         else:
             income += rec[3]  # доходы
+
     if within == "month":
         within = "месяц"
     result = (expenses * 100) / income
     if result > 0.5:
         result = round(result, 1)
     else:
-        result  = round(result, 5)
+        result = round(result, 5)
     return f"Расходы составили {result} %  от доходов за {within}"
 
 
