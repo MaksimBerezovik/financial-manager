@@ -143,7 +143,7 @@ async def start(message: types.Message):
 
 @dp.message_handler(commands=("courses", "курсы", "c"), commands_prefix="/!")
 async def start(message: types.Message):
-    cmd_variants = ("/n", "!n")
+    cmd_variants = ("/courses", "!courses", "/курсы", "!курсы", "/c")
     within_als = {
         "parse_bsb": ("bsb", "бсб"),
         "parse_alfa": ("alfa", "альфа"),

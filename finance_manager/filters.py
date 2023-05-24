@@ -17,6 +17,8 @@ class IsOwnerFilter(BoundFilter):
         return message.from_user.id == config.BOT_OWNER
 
 
+
+
 class IsAdminFilter(BoundFilter):
     """
     Filter that checks for admin rights existence
