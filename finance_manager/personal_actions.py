@@ -40,7 +40,8 @@ async def start(message: types.Message):
         message.from_user.id,
         f"Мои команды:\n /spent, /s, !spent, !s - запоминают расход\n /earned, /e, !earned, "
         f"!e - запоминают доход \n /history, /h, !history, !h - выдают отчет расходов"
-        f" \n !h месяц - за месяц\n !h год - за год",
+        f" \n !h месяц - за месяц\n !h год - за год\n"
+        f"!courses /courses /курсы !курсы /c - показывают курсы валют",
     )
 
 
