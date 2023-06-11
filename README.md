@@ -30,4 +30,6 @@ CREATE TABLE users (
                        DEFAULT ( (DATETIME('now') ) ) 
 );
 ```
-2. 
+2. Set the absolute path to the database in the `bot.py` file in the `BotDB` variable.
+3. Create a `config.py` file and specify the bot's telegram token in the `BOT_TOKEN` variable
+4. In the project directory use `poetry install` to install the required libraries.
