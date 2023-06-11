@@ -7,7 +7,7 @@
 ## Getting started
 To get started with this project, follow the steps below:
 1. Create database with 2 tables SQLite.
-\```
+```
 CREATE TABLE records (
     id        INTEGER  PRIMARY KEY AUTOINCREMENT
                        NOT NULL,
@@ -20,8 +20,8 @@ CREATE TABLE records (
     info      TEXT,
     [group]   TEXT
 );
-\```
-\```
+```
+```
 CREATE TABLE users (
     id        INTEGER  PRIMARY KEY AUTOINCREMENT,
     user_id   INTEGER  UNIQUE
@@ -29,7 +29,5 @@ CREATE TABLE users (
     join_date DATETIME NOT NULL
                        DEFAULT ( (DATETIME('now') ) ) 
 );
-\```
-
-
+```
 2. 
