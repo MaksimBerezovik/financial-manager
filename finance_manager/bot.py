@@ -1,5 +1,6 @@
 from aiogram import executor
 from dispatcher import dp
+from personal_actions import *
 
 from db import BotDB
 
