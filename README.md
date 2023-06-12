@@ -33,3 +33,4 @@ CREATE TABLE users (
 2. Set the absolute path to the database in the `bot.py` file in the `BotDB` variable.
 3. Create a `config.py` file and specify the bot's telegram token in the `BOT_TOKEN` variable
 4. In the project directory use `poetry install` to install the required libraries.
+5. To start the bot use from project root directory `poetry run python finance_manager/bot.py` or run with python `bot.py`
