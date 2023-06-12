@@ -8,6 +8,15 @@
 To get started with this project, follow the steps below:
 1. Create database with 2 tables SQLite.
 ```
+CREATE TABLE users (
+    id        INTEGER  PRIMARY KEY AUTOINCREMENT,
+    user_id   INTEGER  UNIQUE
+                       NOT NULL,
+    join_date DATETIME NOT NULL
+                       DEFAULT ( (DATETIME('now') ) ) 
+);
+```
+```
 CREATE TABLE records (
     id        INTEGER  PRIMARY KEY AUTOINCREMENT
                        NOT NULL,
@@ -19,15 +28,6 @@ CREATE TABLE records (
                        DEFAULT ( (DATETIME('now') ) ),
     info      TEXT,
     [group]   TEXT
-);
-```
-```
-CREATE TABLE users (
-    id        INTEGER  PRIMARY KEY AUTOINCREMENT,
-    user_id   INTEGER  UNIQUE
-                       NOT NULL,
-    join_date DATETIME NOT NULL
-                       DEFAULT ( (DATETIME('now') ) ) 
 );
 ```
 2. Set the absolute path to the database in the `bot.py` file in the `BotDB` variable.
