@@ -1,10 +1,10 @@
-#Financial manager ver. 0.1
+# Financial manager ver. 0.1
 ---
-## Software version
+### Software version
 - python: 3.10.8
 - poetry: 1.5.1
 
-## Getting started
+### Getting started
 To get started with this project, follow the steps below:
 1. Create database with 2 tables SQLite.
 ```
