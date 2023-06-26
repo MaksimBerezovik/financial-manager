@@ -130,4 +130,3 @@ def parse_all() -> str:
         + parse_alfa()
     )
     return result
-
